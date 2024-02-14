@@ -462,7 +462,7 @@ class ContactClient extends Client {
 				return (res.data)
 			})
 			.catch((err) => {
-				return handleRequestError(err);
+				throw handleRequestError(err);
 			});
 	}
 
@@ -1144,6 +1144,7 @@ class LexOfficeClient {
 
 }
 
+exports.LexOfficeClient = LexOfficeClient;
 exports.RequestBadRequestError = RequestBadRequestError;
 exports.RequestBadRequestLegacyError = RequestBadRequestLegacyError;
 exports.RequestConflictError = RequestConflictError;

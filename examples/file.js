@@ -25,6 +25,7 @@ const FormData = require('form-data');
 const form = new FormData();
 
 form.append('file', fs.createReadStream(path.join(__dirname, 'filename.pdf')));
+form.append('type', 'voucher');
 
 lexOffice.files.upload(form)
 	.then((file) => {

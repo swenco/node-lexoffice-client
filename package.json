@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"cjs": "npx rollup index.js --file index.cjs --format cjs"
+	"buildcjs": "npx rollup index.js --file index.cjs --format cjs"
   },
   "exports": {
     "import": "./index.js",

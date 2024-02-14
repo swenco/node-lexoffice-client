@@ -12,7 +12,7 @@ export class ContactClient extends Client {
 				return (res.data)
 			})
 			.catch((err) => {
-				return handleRequestError(err);
+				throw handleRequestError(err);
 			});
 	}
 

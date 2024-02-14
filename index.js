@@ -135,5 +135,6 @@ class LexOfficeClient {
 
 }
 
+export { LexOfficeClient };
 export default LexOfficeClient;
 export * from './errors.js';
