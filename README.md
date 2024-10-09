@@ -70,6 +70,15 @@ async function getInvoice() {
 # API endpoints
 Documentation for the public API can be found here: [lexoffice public API documentation](https://developers.lexoffice.io/docs/)
 
+## Articles 
+
+### Methods overview
+```javascript
+articles.get(id)
+articles.add(article)
+articles.update(id, article)
+articles.filter({ "type": "PRODUCT" })
+```
 
 ## Contacts 
 
@@ -134,6 +143,13 @@ invoices.add(invoice, {finalize:true})
 invoices.render(id)
 ```
 
+## Order Confirmations
+```javascript
+orderConfirmations.get()
+orderConfirmations.add(orderconfirmation)
+orderConfirmations.render(id)
+```
+
 ## Payments
 ```javascript
 payments.get(id)
@@ -142,6 +158,16 @@ payments.get(id)
 ## Payment conditions
 ```javascript
 paymentConditions.list()
+```
+
+## Posting Categories
+```javascript
+postingCategories.list()
+```
+
+## Print Layouts
+```javascript
+printLayouts.list()
 ```
 
 ## Profile

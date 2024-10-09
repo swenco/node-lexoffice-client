@@ -436,6 +436,59 @@ function handleRequestError(error) {
 	}
   }
 
+class ArticleClient extends Client {
+
+	async get(id) {
+
+		return this.axios
+			.get(uri`/articles/${id}`)
+			.then((res) => {
+				return (res.data)
+			})
+			.catch((err) => {
+				throw handleRequestError(err);
+			});
+	}
+
+	async add(article) {
+
+		return this.axios
+			.post(uri`/articles`, article)
+			.then((res) => {
+				return (res.data)
+			})
+			.catch((err) => {
+				throw handleRequestError(err);
+			});
+	}
+
+	async update(id, article) {
+
+		return this.axios
+			.put(uri`/articles/${id}`, article)
+			.then((res) => {
+				return (res.data)
+			})
+			.catch((err) => {
+				throw handleRequestError(err);
+			});
+	}
+
+	async filter(filter) {
+
+		return this.axios
+			.get(uri`/articles`, { params: filter })
+			.then((res) => {
+				return (res.data)
+			}
+			)
+			.catch((err) => {
+				throw handleRequestError(err);
+			});
+	}
+
+}
+
 class CountryClient extends Client {
 
 	async list() {
@@ -859,6 +912,22 @@ class PostingCategoryClient extends Client {
 
 }
 
+class PrintLayoutClient extends Client {
+
+	async list() {
+
+		return this.axios
+			.get(`/print-layouts`)
+			.then((res) => {
+				return (res.data)
+			})
+			.catch((err) => {
+				throw handleRequestError(err);
+			});
+	}
+
+}
+
 class ProfileClient extends Client {
 
 	async get() {
@@ -1028,6 +1097,7 @@ class VoucherListClient extends Client {
 
 class LexOfficeClient {
 
+	#ArticleClient;
 	#CountryClient;
 	#ContactClient;
 	#CreditNoteClient;
@@ -1041,6 +1111,7 @@ class LexOfficeClient {
 	#PaymentClient;
 	#PaymentConditionsClient;
 	#PostingCategoryClient;
+	#PrintLayoutClient;
 	#ProfileClient;
 	#QuotationClient;
 	#RecurringTemplateClient;
@@ -1049,6 +1120,7 @@ class LexOfficeClient {
 
 	constructor(lexApiKey) {
 
+		this.#ArticleClient = new ArticleClient(lexApiKey);
 		this.#CountryClient = new CountryClient(lexApiKey);
 		this.#ContactClient = new ContactClient(lexApiKey);
 		this.#CreditNoteClient = new CreditNoteClient(lexApiKey);
@@ -1062,12 +1134,17 @@ class LexOfficeClient {
 		this.#PaymentClient = new PaymentClient(lexApiKey);
 		this.#PaymentConditionsClient = new PaymentConditionsClient(lexApiKey);
 		this.#PostingCategoryClient = new PostingCategoryClient(lexApiKey);
+		this.#PrintLayoutClient = new PrintLayoutClient(lexApiKey);
 		this.#ProfileClient = new ProfileClient(lexApiKey);
 		this.#QuotationClient = new QuotationClient(lexApiKey);
 		this.#RecurringTemplateClient = new RecurringTemplateClient(lexApiKey);
 		this.#VoucherClient = new VoucherClient(lexApiKey);
 		this.#VoucherListClient = new VoucherListClient(lexApiKey);
 
+	}
+
+	get articles () {
+		return this.#ArticleClient;
 	}
 
 	get countries () {
@@ -1120,6 +1197,10 @@ class LexOfficeClient {
 
 	get postingCategories () {
 		return this.#PostingCategoryClient;
+	}
+
+	get printLayouts () {
+		return this.#PrintLayoutClient;
 	}
 
 	get profile () {

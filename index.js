@@ -1,3 +1,4 @@
+import { ArticleClient } from './api/articleClient.js';
 import { CountryClient } from './api/countryClient.js';
 import { ContactClient } from './api/contactClient.js';
 import { CreditNoteClient } from './api/creditNoteClient.js';
@@ -11,6 +12,7 @@ import { OrderConfirmationClient } from './api/orderConfirmationClient.js';
 import { PaymentClient } from './api/paymentClient.js';
 import { PaymentConditionsClient } from './api/paymentConditionClient.js';
 import { PostingCategoryClient } from './api/postingCategoryClient.js';
+import { PrintLayoutClient } from './api/printLayoutClient.js';
 import { ProfileClient } from './api/profileClient.js';
 import { QuotationClient } from './api/quotationClient.js';
 import { RecurringTemplateClient } from './api/recurringTemplateClient.js';
@@ -19,6 +21,7 @@ import { VoucherListClient } from './api/voucherListClient.js';
 
 class LexOfficeClient {
 
+	#ArticleClient;
 	#CountryClient;
 	#ContactClient;
 	#CreditNoteClient;
@@ -32,6 +35,7 @@ class LexOfficeClient {
 	#PaymentClient;
 	#PaymentConditionsClient;
 	#PostingCategoryClient;
+	#PrintLayoutClient;
 	#ProfileClient;
 	#QuotationClient;
 	#RecurringTemplateClient;
@@ -40,6 +44,7 @@ class LexOfficeClient {
 
 	constructor(lexApiKey) {
 
+		this.#ArticleClient = new ArticleClient(lexApiKey);
 		this.#CountryClient = new CountryClient(lexApiKey);
 		this.#ContactClient = new ContactClient(lexApiKey);
 		this.#CreditNoteClient = new CreditNoteClient(lexApiKey);
@@ -53,12 +58,17 @@ class LexOfficeClient {
 		this.#PaymentClient = new PaymentClient(lexApiKey);
 		this.#PaymentConditionsClient = new PaymentConditionsClient(lexApiKey);
 		this.#PostingCategoryClient = new PostingCategoryClient(lexApiKey);
+		this.#PrintLayoutClient = new PrintLayoutClient(lexApiKey);
 		this.#ProfileClient = new ProfileClient(lexApiKey);
 		this.#QuotationClient = new QuotationClient(lexApiKey);
 		this.#RecurringTemplateClient = new RecurringTemplateClient(lexApiKey);
 		this.#VoucherClient = new VoucherClient(lexApiKey);
 		this.#VoucherListClient = new VoucherListClient(lexApiKey);
 
+	}
+
+	get articles () {
+		return this.#ArticleClient;
 	}
 
 	get countries () {
@@ -111,6 +121,10 @@ class LexOfficeClient {
 
 	get postingCategories () {
 		return this.#PostingCategoryClient;
+	}
+
+	get printLayouts () {
+		return this.#PrintLayoutClient;
 	}
 
 	get profile () {

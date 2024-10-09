@@ -1,12 +1,12 @@
 {
   "name": "node-lexoffice-client",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "JS client library for LexOffice public API",
   "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"buildcjs": "npx rollup index.js --file index.cjs --format cjs"
+    "buildcjs": "npx rollup index.js --file index.cjs --format cjs"
   },
   "exports": {
     "import": "./index.js",
@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "axios": "^1.6.7",
-    "encodeuricomponent-tag": "^1.0.1"
+    "encodeuricomponent-tag": "^1.0.1",
+    "node-lexoffice-client": "file:"
   }
 }
